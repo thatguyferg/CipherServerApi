@@ -4,8 +4,9 @@ import static spark.Spark.*;
 public class CipherResource {
 
   public static void main(String[] args) {
-    get("/hello/:name", (req, res) -> {
-      return "Hello: " + req.params(":name");
+    get("/encrypt/:value", (req, res) -> {
+      CaesarCipher cipher = new CaesarCipher(4);
+      return "Encrypted: " + cipher.encrypt(req.params(":value"));
     });
   }
 }
